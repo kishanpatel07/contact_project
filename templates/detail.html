@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+{% if val.manager == request.user %}
+<p>{{ val.name }}</p>
+    <p>{{ val.email }}</p>
+    <p>{{ val.phone }}</p>
+    <p>{{ val.info }}</p>
+    <p>{{ val.date_added }}</p>
+
+    <a href="{% url 'update' val.id %}">Update</a>
+    <a href="{% url 'delete' val.id %}">Delete</a>
+    {% comment %} <a href="{% url 'delete' val.id %}">Delete</a> {% endcomment %}
+{% else %}
+    <p>No Contact Found..</p>
+{% endif %}
+{% endblock %}

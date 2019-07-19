@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+{% if search_term %}
+
+{% for o1 in search_term %}
+
+
+<div class="container">
+        <div class="card my-2 mx-2 boy-card w-25">
+            {% if o1.gender == 'M' %}  
+            <img src="{% if o1.image %} 
+            {{o1.image.url}}
+            {% else %}
+            {% static 'img/boy.jpg' %}
+            {% endif %}" class="img-fluid" width="100px" height="100px" />
+            {% else %}
+            <img src="{% if o1.image %} 
+            {{o1.image.url}}
+            {% else %}
+            {% static 'img/girl.jpg' %}
+            {% endif %}
+            "class="img-fluid" width="100px" height="100px" />
+            {% endif %}
+            <div class="card-header">
+            <a href="{% url 'details' o1.id %}" class="text-black header-link"
+                >NAME :<i class="fas fa-mars mr-2"></i> {{ o1.name }}</a
+            >
+            </div>
+            <div class="card-body pb-0">
+            <p>
+                <i class="fas fa-at mr-2">EMAIL :</i>
+                <a href="mailto:{{ o1.email }}">{{ o1.email }}</a>
+            </p>
+            <p>
+                <i class="fas fa-phone mr-2">PHONE :</i>
+                <a href="tel:{{ o1.phone }}">{{  o1.phone }}</a>
+            </p>
+            <p><i class="fas fa-info-circle mr-2">INFO :</i> {{ o1.info }}</p>
+            <p><i class="fas fa-info-circle mr-2">ADDED_ON :</i> {{ o1.date_added }}</p>
+            </div>
+        </div>
+
+
+    </div>
+    </div>
+
+
+
+
+
+{% endfor %}
+
+{% else %}
+<p>{{ msg }}</p>
+{% endif %}
+{% endblock %}

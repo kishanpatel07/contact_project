@@ -1,0 +1,65 @@
+
+            {% extends 'base.html' %}
+            {% load static %}
+            {% block content %}
+                <div class="container">
+                    {% if data %}
+
+                    <div class="alert alert-success">
+                        <p>Records Found..</p>
+                    </div>
+                        {% for obj in data %}
+
+                            
+                                            <div class="container">
+                                                <div class="card my-2 mx-2 boy-card w-25">
+                                                    {% if obj.gender == 'M' %}  
+                                                    <img src="{% if obj.image %} 
+                                                    {{obj.image.url}}
+                                                    {% else %}
+                                                    {% static 'img/boy.jpg' %}
+                                                    {% endif %}" class="img-fluid" width="100px" height="100px" />
+                                                    {% else %}
+                                                    <img src="{% if obj.image %} 
+                                                    {{obj.image.url}}
+                                                    {% else %}
+                                                    {% static 'img/girl.jpg' %}
+                                                    {% endif %}
+                                                    "class="img-fluid" width="100px" height="100px" />
+                                                    {% endif %}
+                                                    <div class="card-header">
+                                                    <a href="{% url 'details' obj.id %}" class="text-black header-link"
+                                                        >NAME :<i class="fas fa-mars mr-2"></i> {{ obj.name }}</a
+                                                    >
+                                                    </div>
+                                                    <div class="card-body pb-0">
+                                                    <p>
+                                                        <i class="fas fa-at mr-2">EMAIL :</i>
+                                                        <a href="mailto:{{ obj.email }}">{{ obj.email }}</a>
+                                                    </p>
+                                                    <p>
+                                                        <i class="fas fa-phone mr-2">PHONE :</i>
+                                                        <a href="tel:{{ obj.phone }}">{{  obj.phone }}</a>
+                                                    </p>
+                                                    <p><i class="fas fa-info-circle mr-2">INFO :</i> {{ obj.info }}</p>
+                                                    <p><i class="fas fa-info-circle mr-2">ADDED_ON :</i> {{ obj.date_added }}</p>
+                                                        
+                                                    </div>
+                                                </div>
+                            
+                            
+                                            </div>
+                                            </div>
+                            
+                            
+                        {% endfor %}
+                    {% else %}
+                    <div class="alert alert-danger">
+                        <p>No Such Records Found..</p>
+                    </div>
+                    {% endif %}
+                </div>
+
+                
+            {% endblock %}
+

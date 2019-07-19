@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+{% if val.manager == request.user %}
+<div class="container w-50" class="m-auto text-center">
+        <form action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form | crispy }}
+        
+            <input type="submit" value="Update" name="Update">
+        </form>
+</div>
+
+{% else %}
+<p>Error</p>
+{% endif %}
+
+{% endblock %}
